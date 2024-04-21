@@ -1,4 +1,49 @@
-$(document).ready(function () {
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <table id="example" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Position</th>
+          <th>Office</th>
+          <th>Age</th>
+          <th>Start date</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Tiger Nixon</td>
+          <td>System Architect</td>
+          <td>Edinburgh</td>
+          <td>61</td>
+          <td>2011/04/25</td>
+          <td>$320,800</td>
+        </tr>
+        <tr>
+          <td>Garrett Winters</td>
+          <td>Accountant</td>
+          <td>Tokyo</td>
+          <td>63</td>
+          <td>2011/07/25</td>
+          <td>$170,750</td>
+        </tr>
+        <!-- Add more rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    $(document).ready(function () {
     // Setup - add a text input to each footer cell
     $('#example thead tr')
         .clone(true)
@@ -59,3 +104,6 @@ $(document).ready(function () {
         },
     });
 });
+  </script>
+</body>
+</html>
