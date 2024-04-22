@@ -1,0 +1,199 @@
+{
+    "data": [
+      {
+        "id_number": 1,
+        "name": "John",
+        "family": "Doe",
+        "citizenship_number": "1234567890",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 2,
+        "name": "Jane",
+        "family": "Smith",
+        "citizenship_number": "0987654321",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 3,
+        "name": "Michael",
+        "family": "Johnson",
+        "citizenship_number": "9876543210",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 4,
+        "name": "Emily",
+        "family": "Williams",
+        "citizenship_number": "5678901234",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 5,
+        "name": "David",
+        "family": "Brown",
+        "citizenship_number": "4321098765",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 6,
+        "name": "Sarah",
+        "family": "Taylor",
+        "citizenship_number": "8901234567",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 7,
+        "name": "Matthew",
+        "family": "Wilson",
+        "citizenship_number": "6789012345",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 8,
+        "name": "Olivia",
+        "family": "Thomas",
+        "citizenship_number": "3456789012",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 9,
+        "name": "Daniel",
+        "family": "Martinez",
+        "citizenship_number": "9012345678",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 10,
+        "name": "Sophia",
+        "family": "Lee",
+        "citizenship_number": "2345678901",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 11,
+        "name": "James",
+        "family": "Davis",
+        "citizenship_number": "7890123456",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 12,
+        "name": "Emma",
+        "family": "Rodriguez",
+        "citizenship_number": "0123456789",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 13,
+        "name": "William",
+        "family": "Garcia",
+        "citizenship_number": "9012345678",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 14,
+        "name": "Ava",
+        "family": "Lopez",
+        "citizenship_number": "3456789012",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      },
+      {
+        "id_number": 15,
+        "name": "Alexander",
+        "family": "Hernandez",
+        "citizenship_number": "7890123456",
+        "actions": {
+          "eye" : "view",
+          "pen" : "edit",
+          "trash": "delete",
+          "globe-americas" : "maps",
+          "bar-chart-fill": "graphs"
+        }
+      }
+    ]
+  }
