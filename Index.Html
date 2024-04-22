@@ -2,108 +2,52 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
 </head>
 <body>
-  <div class="container">
-    <table id="example" class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Position</th>
-          <th>Office</th>
-          <th>Age</th>
-          <th>Start date</th>
-          <th>Salary</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Tiger Nixon</td>
-          <td>System Architect</td>
-          <td>Edinburgh</td>
-          <td>61</td>
-          <td>2011/04/25</td>
-          <td>$320,800</td>
-        </tr>
-        <tr>
-          <td>Garrett Winters</td>
-          <td>Accountant</td>
-          <td>Tokyo</td>
-          <td>63</td>
-          <td>2011/07/25</td>
-          <td>$170,750</td>
-        </tr>
-        <!-- Add more rows as needed -->
-      </tbody>
+  <div class="container ">
+    <div class="table-responsive">
+        <table id="example" class="table table-striped ">
+            <button onclick="openPopup('addPerson')" class="btn btn-outline-primary my-1">Add Person</button>
+        <thead>
+            <div class="">
+            <tr class="table-dark ">
+            <th class="col-1 text-danger">#</th>
+            <th class="col-2 text-info">name</th>
+            <th class="col-2 text-info">family</th>
+            <th class="col-2 text-info">citizenship number</th>
+            <th class="col-2 text-info"></th>
+            </tr>
+            </div>
+        </thead>
     </table>
+    </div>
+     <!-- Popup/modal -->
+     <div class="modal fade" id="PopupModal" tabindex="-1" role="dialog" aria-labelledby="PopupModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 id="modal-title" class="modal-title" id="PopupModal"></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closePopup()"">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div id="modalbody" class="modal-body">
+              <!-- Add modal form here -->
+            </div>
+            <div id="modalfooter" class="modal-footer">
+              
+              
+            </div>
+          </div>
+        </div>
+      </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-  <script>
-    $(document).ready(function () {
-    // Setup - add a text input to each footer cell
-    $('#example thead tr')
-        .clone(true)
-        .addClass('filters')
-        .appendTo('#example thead');
- 
-    var table = $('#example').DataTable({
-        orderCellsTop: true,
-        fixedHeader: true,
-        initComplete: function () {
-            var api = this.api();
- 
-            // For each column
-            api
-                .columns()
-                .eq(0)
-                .each(function (colIdx) {
-                    // Set the header cell to contain the input element
-                    var cell = $('.filters th').eq(
-                        $(api.column(colIdx).header()).index()
-                    );
-                    var title = $(cell).text();
-                    $(cell).html('<input type="text" placeholder="' + title + '" />');
- 
-                    // On every keypress in this input
-                    $(
-                        'input',
-                        $('.filters th').eq($(api.column(colIdx).header()).index())
-                    )
-                        .off('keyup change')
-                        .on('change', function (e) {
-                            // Get the search value
-                            $(this).attr('title', $(this).val());
-                            var regexr = '({search})'; //$(this).parents('th').find('select').val();
- 
-                            var cursorPosition = this.selectionStart;
-                            // Search the column for that value
-                            api
-                                .column(colIdx)
-                                .search(
-                                    this.value != ''
-                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
-                                        : '',
-                                    this.value != '',
-                                    this.value == ''
-                                )
-                                .draw();
-                        })
-                        .on('keyup', function (e) {
-                            e.stopPropagation();
- 
-                            $(this).trigger('change');
-                            $(this)
-                                .focus()[0]
-                                .setSelectionRange(cursorPosition, cursorPosition);
-                        });
-                });
-        },
-    });
-});
-  </script>
+  <script src="datatable.js"></script>
 </body>
 </html>
