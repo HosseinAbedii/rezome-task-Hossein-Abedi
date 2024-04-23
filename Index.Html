@@ -5,6 +5,9 @@
       .dataTables_filter {
         display: none !important;
       }
+      .close{
+        border: 0 !important;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -39,9 +42,9 @@
             <div class="">
               <tr class="table-dark">
                 <th class="col-1 text-danger">#</th>
-                <th class="col-2 text-info">name</th>
-                <th class="col-2 text-info">family</th>
-                <th class="col-2 text-info">citizenship number</th>
+                <th class="col-2 text-info">Name</th>
+                <th class="col-2 text-info">Family</th>
+                <th class="col-2 text-info">Citizenship Number</th>
                 <th class="col-2 text-info"></th>
               </tr>
             </div>
@@ -83,14 +86,14 @@
 
       <!-- Bootstrap chart Modal -->
       <div
-        class="modal fade"
+        class="modal fade bd-example-modal-lg"
         id="chartModal"
         tabindex="-1"
         role="dialog"
         aria-labelledby="chartModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="chartModalLabel">Chart</h5>

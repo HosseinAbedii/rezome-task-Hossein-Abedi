@@ -4,95 +4,88 @@ $(document).ready(function () {
     .clone(true)
     .addClass("filters")
     .appendTo("#example thead");
-
-  var table = $("#example").DataTable({
-    paging: false,
-    orderCellsTop: true,
-    fixedHeader: true,
-    initComplete: function () {
-      var api = this.api();
-
-      // For each column
-      api
-        .columns()
-        .eq(0)
-        .each(function (colIdx) {
-          var cell = $(".filters th").eq(
-            $(api.column(colIdx).header()).index()
-          );
-          var title = $(cell).text();
-          if (title == "") {
-          } else {
-            $(cell).html(
-              '<input type="text" class="color-primry form-control mx-auto" placeholder="' +
-                title +
-                '" />'
-            );
-          }
-
-          $(
-            "input",
-            $(".filters th").eq($(api.column(colIdx).header()).index())
-          )
-            .off("keyup change")
-            .on("change", function (e) {
-              $(this).attr("title", $(this).val());
-              var regexr = "({search})";
-
-              var cursorPosition = this.selectionStart;
-
-              api
-                .column(colIdx)
-                .search(
-                  this.value != ""
-                    ? regexr.replace("{search}", "(((" + this.value + ")))")
-                    : "",
-                  this.value != "",
-                  this.value == ""
-                )
-                .draw();
-            })
-            .on("keyup", function (e) {
-              e.stopPropagation();
-
-              $(this).trigger("change");
-              $(this)
-                .focus()[0]
-                .setSelectionRange(cursorPosition, cursorPosition);
-            });
-        });
+  $.ajax({
+    url: "data.json",
+    dataType: "json",
+    success: function (data) {
+      globalData = data.data; // Assign the retrieved data to the global variable
     },
-    ajax: {
-      url: "data.json",
-      dataSrc: "data",
-    },
-    columns: [
-      { data: "id_number" },
-      { data: "name" },
-      { data: "family" },
-      { data: "citizenship_number" },
-      {
-        data: null,
-        render: function (data) {
-          var buttons = `
-          <i class="text-success bi bi-eye mx-1" onclick="openPopup( 'view' , '${data.id_number}')"></i>
-          <i class="text-success bi bi-pen mx-1" onclick="openPopup( 'edit' , '${data.id_number}')"></i>
-          <i class="text-success bi bi-trash mx-1" onclick="openPopup( 'delete' , '${data.id_number}')"></i>
-          <i class="text-success bi bi-globe-americas mx-1" onclick="openPopup( 'maps' , '${data.id_number}')"></i>
-          <i class="text-success bi bi-bar-chart-fill mx-1"id="openModalButton"onclick="OpenChartPopup('${data.id_number}')"></i>
-          `;
-          return buttons;
-        },
-      },
-    ],
   });
 });
-$.ajax({
-  url: "data.json",
-  dataType: "json",
-  success: function (data) {
-    globalData = data.data; // Assign the retrieved data to the global variable
+var table = $("#example").DataTable({
+  paging: false,
+  orderCellsTop: true,
+  fixedHeader: true,
+  initComplete: function () {
+    var api = this.api();
+
+    // For each column
+    api
+      .columns()
+      .eq(0)
+      .each(function (colIdx) {
+        var cell = $(".filters th").eq($(api.column(colIdx).header()).index());
+        var title = $(cell).text();
+        if (title == "") {
+        } else {
+          $(cell).html(
+            '<input type="text" class="color-primry form-control mx-auto" placeholder="' +
+              title +
+              '" />'
+          );
+        }
+
+        $("input", $(".filters th").eq($(api.column(colIdx).header()).index()))
+          .off("keyup change")
+          .on("change", function (e) {
+            $(this).attr("title", $(this).val());
+            var regexr = "({search})";
+
+            var cursorPosition = this.selectionStart;
+
+            api
+              .column(colIdx)
+              .search(
+                this.value != ""
+                  ? regexr.replace("{search}", "(((" + this.value + ")))")
+                  : "",
+                this.value != "",
+                this.value == ""
+              )
+              .draw();
+          })
+          .on("keyup", function (e) {
+            e.stopPropagation();
+
+            $(this).trigger("change");
+            $(this)
+              .focus()[0]
+              .setSelectionRange(cursorPosition, cursorPosition);
+          });
+      });
   },
+  ajax: {
+    url: "data.json",
+  },
+  columns: [
+    { data: "id_number" },
+    { data: "name" },
+    { data: "family" },
+    { data: "citizenship_number" },
+    {
+      data: null,
+      render: function (data) {
+        var buttons = `
+            <i class="text-success bi bi-eye mx-1" onclick="openPopup( 'view' , '${data.id_number}')"></i>
+            <i class="text-success bi bi-pen mx-1" onclick="openPopup( 'edit' , '${data.id_number}')"></i>
+            <i class="text-success bi bi-trash mx-1" onclick="openPopup( 'delete' , '${data.id_number}')"></i>
+            <i class="text-success bi bi-globe-americas mx-1" onclick="openPopup( 'maps' , '${data.id_number}')"></i>
+            <i class="text-success bi bi-bar-chart-fill mx-1"id="openModalButton"onclick="OpenChartPopup('${data.id_number}')"></i>
+            `;
+        return buttons;
+      },
+    },
+  ],
 });
 function openPopup(action, id_number) {
   $("#PopupModal").modal("show");
@@ -106,7 +99,7 @@ function openPopup(action, id_number) {
     editModal(id_number);
     $("#modal-title").html("edit");
   } else if (action == "delete") {
-    deleteModa(id_number);
+    deleteModal(id_number);
     $("#modal-title").html("delete");
   } else if (action == "maps") {
     $("#modal-title").html("maps");
@@ -117,7 +110,6 @@ function openPopup(action, id_number) {
   }
 }
 function addPersonModal() {
-  var id = 1;
   var modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
   var nameInput = `
@@ -148,7 +140,7 @@ function addPersonModal() {
     Close
     </button>`;
   var buttonSave = `
-    <button type="button" class="btn btn-primary" onclick="addPerson(${id})">
+    <button type="button" class="btn btn-primary" onclick="addPerson(null)">
     Save 
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose + buttonSave);
@@ -212,7 +204,7 @@ function editModal(id) {
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose + buttonSave);
 }
-function deleteModa(id) {
+function deleteModal(id) {
   var modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
   var nameView = `
@@ -321,13 +313,22 @@ function createChartModal(id) {
   return chartCanvas;
 }
 function addPerson(id) {
+  var id_number = 0;
+  var actions = {};
   var name = document.getElementById("nameInput").value;
   var family = document.getElementById("familyInput").value;
-  var citizenshipNumber = document.getElementById(
+  var citizenship_number = document.getElementById(
     "citizenshipNumberInput"
   ).value;
-  console.log(name, family, citizenshipNumber);
-
+  if (id == null) {
+    id_number = globalData.length + 1;
+    actions.mapsLocation = "0,0";
+    actions.graphsData = [0, 0, 0, 0, 0, 0];
+  } else {
+    id_number = id;
+    actions = globalData[id].actions
+  }
+  console.log({ id_number, name, family, citizenship_number, actions });
   $("#PopupModal").modal("hide");
 }
 function detelePerson(id) {
