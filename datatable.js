@@ -8,24 +8,24 @@ $(document).ready(function () {
     url: "data.json",
     dataType: "json",
     success: function (data) {
-      globalData = data.data; // Assign the retrieved data to the global variable
+      globalData = data.data; // Assign the retrieved data to the global  letiable
     },
   });
 });
-var table = $("#example").DataTable({
+let table = $("#example").DataTable({
   paging: false,
   orderCellsTop: true,
   fixedHeader: true,
   initComplete: function () {
-    var api = this.api();
+    let api = this.api();
 
     // For each column
     api
       .columns()
       .eq(0)
       .each(function (colIdx) {
-        var cell = $(".filters th").eq($(api.column(colIdx).header()).index());
-        var title = $(cell).text();
+        let cell = $(".filters th").eq($(api.column(colIdx).header()).index());
+        let title = $(cell).text();
         if (title == "") {
         } else {
           $(cell).html(
@@ -39,9 +39,9 @@ var table = $("#example").DataTable({
           .off("keyup change")
           .on("change", function (e) {
             $(this).attr("title", $(this).val());
-            var regexr = "({search})";
+            let regexr = "({search})";
 
-            var cursorPosition = this.selectionStart;
+            let cursorPosition = this.selectionStart;
 
             api
               .column(colIdx)
@@ -75,7 +75,7 @@ var table = $("#example").DataTable({
     {
       data: null,
       render: function (data) {
-        var buttons = `
+        let buttons = `
             <i class="text-success pointer bi bi-eye mx-1" onclick="openPopup( 'view' , '${data.id_number}')"></i>
             <i class="text-success pointer bi bi-pen mx-1" onclick="openPopup( 'edit' , '${data.id_number}')"></i>
             <i class="text-success pointer bi bi-trash mx-1" onclick="openPopup( 'delete' , '${data.id_number}')"></i>
@@ -110,21 +110,21 @@ function openPopup(action, id_number) {
   }
 }
 function addPersonModal() {
-  var modalBody = document.getElementById("modalbody");
+  let modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
-  var nameInput = `
+  let nameInput = `
   <div class="form-floating mb-3">
   <input type="name" class="form-control" id="nameInput" placeholder="Name">
   <label for="nameInput">Name</label>
   </div>`;
 
-  var familyInput = `
+  let familyInput = `
     <div class="form-floating mb-3">
     <input type="family" class="form-control" id="familyInput" placeholder="Family Name">
     <label for="familyInput">Family Name</label>
     </div>`;
 
-  var citizenshipInput = `
+  let citizenshipInput = `
     <div class="form-floating mb-3">
     <input type="citizenship number" class="form-control" id="citizenshipNumberInput" placeholder="citizenship number">
     <label for="citizenshipNumberInput">citizenship number</label>
@@ -133,57 +133,57 @@ function addPersonModal() {
     "afterbegin",
     nameInput + familyInput + citizenshipInput
   );
-  var modalfooter = document.getElementById("modalfooter");
+  let modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose = `
+  let buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     Close
     </button>`;
-  var buttonSave = `
+  let buttonSave = `
     <button type="button" class="btn btn-primary" onclick="addPerson(null)">
     Save 
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose + buttonSave);
 }
 function viewModal(id) {
-  var modalBody = document.getElementById("modalbody");
+  let modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
-  var nameView = `
+  let nameView = `
   <div class="alert alert-info" role="alert">Name:<hr>${globalData[id].name}</div>`;
 
-  var familyView = `
+  let familyView = `
     <div class="alert alert-info" role="alert">Family:<hr>${globalData[id].family}</div>`;
 
-  var citizenshipView = `
+  let citizenshipView = `
     <div class="alert alert-info" role="alert">Citizenship Number:<hr>${globalData[id].citizenship_number}</div>`;
   modalBody.insertAdjacentHTML(
     "afterbegin",
     nameView + familyView + citizenshipView
   );
-  var modalfooter = document.getElementById("modalfooter");
+  let modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose = `
+  let buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     Close
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose);
 }
 function editModal(id) {
-  var modalBody = document.getElementById("modalbody");
+  let modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
-  var nameInput = `
+  let nameInput = `
   <div class="form-floating mb-3">
   <input type="name" class="form-control" id="nameInput" value='${globalData[id].name}'>
   <label for="nameInput">Name</label>
   </div>`;
 
-  var familyInput = `
+  let familyInput = `
     <div class="form-floating mb-3">
     <input type="family" class="form-control" id="familyInput" value='${globalData[id].family}'>
     <label for="familyInput">Family Name</label>
     </div>`;
 
-  var citizenshipInput = `
+  let citizenshipInput = `
     <div class="form-floating mb-3">
     <input type="citizenship number" class="form-control" id="citizenshipNumberInput" value='${globalData[id].citizenship_number}'>
     <label for="citizenshipNumberInput">citizenship number</label>
@@ -192,57 +192,57 @@ function editModal(id) {
     "afterbegin",
     nameInput + familyInput + citizenshipInput
   );
-  var modalfooter = document.getElementById("modalfooter");
+  let modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose = `
+  let buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     Close
     </button>`;
-  var buttonSave = `
+  let buttonSave = `
     <button type="button" class="btn btn-primary" onclick="addPerson(${id})">
     Save
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose + buttonSave);
 }
 function deleteModal(id) {
-  var modalBody = document.getElementById("modalbody");
+  let modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
-  var nameView = `
+  let nameView = `
   <div class ="row">
   <p class="text-primary">Do you want to delete the following information? </p>
   <div class="alert alert-danger col-5 mx-auto" role="alert">Name:<hr>${globalData[id].name}</div>`;
 
-  var familyView = `
+  let familyView = `
     <div class="alert alert-danger col-5 mx-auto" role="alert">Family:<hr>${globalData[id].family}</div>`;
 
-  var citizenshipView = `
+  let citizenshipView = `
     <div class="alert alert-danger col-11 mx-auto" role="alert">Citizenship Number:<hr>${globalData[id].citizenship_number}</div>
     </div>`;
   modalBody.insertAdjacentHTML(
     "afterbegin",
     nameView + familyView + citizenshipView
   );
-  var modalfooter = document.getElementById("modalfooter");
+  let modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose = `
+  let buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     Close
     </button>`;
-  var buttonSave = `
+  let buttonSave = `
     <button type="button" class="btn btn-danger" onclick="detelePerson(${id})">
     Delete 
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose + buttonSave);
 }
 function mapModal(id) {
-  var modalBody = document.getElementById("modalbody");
+  let modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
-  var mapView = `
+  let mapView = `
   <div id="map" style="height: 400px;"></div>`;
   modalBody.insertAdjacentHTML("afterbegin", mapView);
   document.addEventListener("DOMContentLoaded", function () {
     // Initialize the map
-    var map = L.map("map").setView([51.505, -0.09], 13);
+    let map = L.map("map").setView([51.505, -0.09], 13);
 
     // Add a tile layer to the map
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
@@ -256,9 +256,9 @@ function mapModal(id) {
 
     // Optionally, you can customize the map view or add more markers, polygons, etc.
   });
-  var modalfooter = document.getElementById("modalfooter");
+  let modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose = `
+  let buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     "Close
     "</button>`;
@@ -266,14 +266,14 @@ function mapModal(id) {
 }
 function createChartModal(id) {
   // Create a canvas element to hold the chart
-  var chartCanvas = document.createElement("canvas");
+  let chartCanvas = document.createElement("canvas");
   chartCanvas.id = "chartCanvas";
   chartCanvas.width = 400;
   chartCanvas.height = 300;
 
   // Create the chart using Chart.js
-  var chartCtx = chartCanvas.getContext("2d");
-  var chart = new Chart(chartCtx, {
+  let chartCtx = chartCanvas.getContext("2d");
+  let chart = new Chart(chartCtx, {
     type: "bar",
     data: {
       labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
@@ -313,15 +313,15 @@ function createChartModal(id) {
   return chartCanvas;
 }
 function addPerson(id) {
-  var id_number = 0;
-  var actions = {};
-  var name = document.getElementById("nameInput").value;
-  var family = document.getElementById("familyInput").value;
-  var citizenship_number = document.getElementById(
+  let id_number = 0;
+  let actions = {};
+  let name = document.getElementById("nameInput").value;
+  let family = document.getElementById("familyInput").value;
+  let citizenship_number = document.getElementById(
     "citizenshipNumberInput"
   ).value;
   if (id == null) {
-    id_number = globalData.length + 1;
+    id_number = globalData.length;
     actions.mapsLocation = "0,0";
     actions.graphsData = [0, 0, 0, 0, 0, 0];
   } else {
@@ -330,8 +330,9 @@ function addPerson(id) {
     table.rows(id).remove().draw();
   }
   console.log({ id_number, name, family, citizenship_number, actions });
-  table.rows.add([{ id_number, name, family, citizenship_number, actions }]).draw();
-
+  table.rows
+    .add([{ id_number, name, family, citizenship_number, actions }])
+    .draw();
 
   $("#PopupModal").modal("hide");
   createAlert("success", "data added to the Data Table.");
@@ -349,13 +350,13 @@ function closechartPopup() {
 }
 function OpenChartPopup(id) {
   $("#chartModal").modal("show");
-  var chartModalBody = document.querySelector("#chartModal .modal-body");
+  let chartModalBody = document.querySelector("#chartModal .modal-body");
   chartModalBody.innerHTML = "";
   chartModalBody.appendChild(createChartModal(id));
 }
 function createAlert(type, message) {
   // Create the alert element
-  var alertElement = `
+  let alertElement = `
   <div class="pe-auto col-3 my-5 ms-4 me-auto alert alert-${type} alert-dismissible fade show">
       <div class="modal-header">
               <i id="modal-title" class="modal-title" id="PopupModal">
@@ -367,10 +368,10 @@ function createAlert(type, message) {
   </div>`;
 
   // Append the alert element to the container
-  var alertContainer = document.getElementById("alertContainer");
+  let alertContainer = document.getElementById("alertContainer");
   alertContainer.insertAdjacentHTML("afterbegin", alertElement);
 }
 function closealert() {
-  var alertContainer = document.getElementById("alertContainer");
+  let alertContainer = document.getElementById("alertContainer");
   alertContainer.innerHTML = "";
 }
