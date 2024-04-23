@@ -8,6 +8,18 @@
       .close{
         border: 0 !important;
       }
+      .alertContainer{
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1000;
+        pointer-events: none;
+      }
+      .pointer {
+        cursor: pointer;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -29,9 +41,9 @@
     />
   </head>
   <body>
+    <div id="alertContainer" class="alertContainer"></div>
     <div class="container">
-      <div id="alertContainer">
-      </div>
+      <!-- Button to trigger the alert tooltip -->
       <div class="table-responsive">
         <table id="example" class="table table-striped">
           <button

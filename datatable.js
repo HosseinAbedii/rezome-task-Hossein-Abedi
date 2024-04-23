@@ -76,17 +76,18 @@ var table = $("#example").DataTable({
       data: null,
       render: function (data) {
         var buttons = `
-            <i class="text-success bi bi-eye mx-1" onclick="openPopup( 'view' , '${data.id_number}')"></i>
-            <i class="text-success bi bi-pen mx-1" onclick="openPopup( 'edit' , '${data.id_number}')"></i>
-            <i class="text-success bi bi-trash mx-1" onclick="openPopup( 'delete' , '${data.id_number}')"></i>
-            <i class="text-success bi bi-globe-americas mx-1" onclick="openPopup( 'maps' , '${data.id_number}')"></i>
-            <i class="text-success bi bi-bar-chart-fill mx-1"id="openModalButton"onclick="OpenChartPopup('${data.id_number}')"></i>
+            <i class="text-success pointer bi bi-eye mx-1" onclick="openPopup( 'view' , '${data.id_number}')"></i>
+            <i class="text-success pointer bi bi-pen mx-1" onclick="openPopup( 'edit' , '${data.id_number}')"></i>
+            <i class="text-success pointer bi bi-trash mx-1" onclick="openPopup( 'delete' , '${data.id_number}')"></i>
+            <i class="text-success pointer bi bi-globe-americas mx-1" onclick="openPopup( 'maps' , '${data.id_number}')"></i>
+            <i class="text-success pointer bi bi-bar-chart-fill mx-1"id="openModalButton"onclick="OpenChartPopup('${data.id_number}')"></i>
             `;
         return buttons;
       },
     },
   ],
 });
+function Modalcreator(){}
 function openPopup(action, id_number) {
   $("#PopupModal").modal("show");
   if (action == "addPerson") {
@@ -162,10 +163,10 @@ function viewModal(id) {
   );
   var modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose =
-    '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">' +
-    "Close" +
-    "</button>";
+  var buttonClose = `
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
+    Close
+    </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose);
 }
 function editModal(id) {
@@ -327,14 +328,19 @@ function addPerson(id) {
   } else {
     id_number = id;
     actions = globalData[id].actions;
+    table.rows(id).remove().draw();
   }
   console.log({ id_number, name, family, citizenship_number, actions });
+  table.rows.add([{ id_number, name, family, citizenship_number, actions }]).draw();
+
+
   $("#PopupModal").modal("hide");
   createAlert("success", "data added to the Data Table.");
 }
 function detelePerson(id) {
+  table.rows(id).remove().draw();
   $("#PopupModal").modal("hide");
-  createAlert("warning", "Person data deleted!");
+  createAlert("danger", "Person data deleted!");
 }
 function closePopup() {
   $("#PopupModal").modal("hide");
@@ -351,7 +357,7 @@ function OpenChartPopup(id) {
 function createAlert(type, message) {
   // Create the alert element
   var alertElement = `
-  <div class="col-6 my-auto mx-auto alert alert-${type} alert-dismissible fade show">
+  <div class="pe-auto col-3 my-5 ms-4 me-auto alert alert-${type} alert-dismissible fade show">
       <div class="modal-header">
               <i id="modal-title" class="modal-title" id="PopupModal">
               ${message}</i>
