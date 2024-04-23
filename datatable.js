@@ -326,13 +326,15 @@ function addPerson(id) {
     actions.graphsData = [0, 0, 0, 0, 0, 0];
   } else {
     id_number = id;
-    actions = globalData[id].actions
+    actions = globalData[id].actions;
   }
   console.log({ id_number, name, family, citizenship_number, actions });
   $("#PopupModal").modal("hide");
+  createAlert("success", "data added to the Data Table.");
 }
 function detelePerson(id) {
   $("#PopupModal").modal("hide");
+  createAlert("warning", "Person data deleted!");
 }
 function closePopup() {
   $("#PopupModal").modal("hide");
@@ -345,4 +347,25 @@ function OpenChartPopup(id) {
   var chartModalBody = document.querySelector("#chartModal .modal-body");
   chartModalBody.innerHTML = "";
   chartModalBody.appendChild(createChartModal(id));
+}
+function createAlert(type, message) {
+  // Create the alert element
+  var alertElement = `
+  <div class="col-6 my-auto mx-auto alert alert-${type} alert-dismissible fade show">
+      <div class="modal-header">
+              <i id="modal-title" class="modal-title" id="PopupModal">
+              ${message}</i>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="closealert()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+      </div>
+  </div>`;
+
+  // Append the alert element to the container
+  var alertContainer = document.getElementById("alertContainer");
+  alertContainer.insertAdjacentHTML("afterbegin", alertElement);
+}
+function closealert() {
+  var alertContainer = document.getElementById("alertContainer");
+  alertContainer.innerHTML = "";
 }
