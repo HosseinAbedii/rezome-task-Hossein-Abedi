@@ -87,7 +87,6 @@ var table = $("#example").DataTable({
     },
   ],
 });
-function Modalcreator(){}
 function openPopup(action, id_number) {
   $("#PopupModal").modal("show");
   if (action == "addPerson") {
