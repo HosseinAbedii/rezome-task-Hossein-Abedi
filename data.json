@@ -1,153 +1,163 @@
 {
     "data": [
       {
-        "id_number": 1,
+        "id_number": 0,
         "name": "John",
         "family": "Doe",
         "citizenship_number": "1234567890",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 2,
+        "id_number": 1,
         "name": "Jane",
         "family": "Smith",
         "citizenship_number": "0987654321",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 14, 4, 3]
         }
       },
       {
-        "id_number": 3,
+        "id_number": 2,
         "name": "Michael",
         "family": "Johnson",
         "citizenship_number": "9876543210",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 4,
+        "id_number": 3,
         "name": "Emily",
         "family": "Williams",
         "citizenship_number": "5678901234",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 16,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 5,
+        "id_number": 4,
         "name": "David",
         "family": "Brown",
         "citizenship_number": "4321098765",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 14, 4, 3]
         }
       },
       {
-        "id_number": 6,
+        "id_number": 5,
         "name": "Sarah",
         "family": "Taylor",
         "citizenship_number": "8901234567",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 7,
+        "id_number": 6,
         "name": "Matthew",
         "family": "Wilson",
         "citizenship_number": "6789012345",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4,13, 3]
         }
       },
       {
-        "id_number": 8,
+        "id_number": 7,
         "name": "Olivia",
         "family": "Thomas",
         "citizenship_number": "3456789012",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4, 4, 12]
         }
       },
       {
-        "id_number": 9,
+        "id_number": 8,
         "name": "Daniel",
         "family": "Martinez",
         "citizenship_number": "9012345678",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 3,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 10,
+        "id_number": 9,
         "name": "Sophia",
         "family": "Lee",
         "citizenship_number": "2345678901",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4, 4, 1]
         }
       },
       {
-        "id_number": 11,
+        "id_number": 10,
         "name": "James",
         "family": "Davis",
         "citizenship_number": "7890123456",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 12,
+        "id_number": 11,
         "name": "Emma",
         "family": "Rodriguez",
         "citizenship_number": "0123456789",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [11, 7,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 13,
+        "id_number": 12,
         "name": "William",
         "family": "Garcia",
         "citizenship_number": "9012345678",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 16,13, 4, 4, 3]
         }
       },
       {
-        "id_number": 14,
+        "id_number": 13,
         "name": "Ava",
         "family": "Lopez",
         "citizenship_number": "3456789012",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 4, 4, 13]
         }
       },
       {
-        "id_number": 15,
+        "id_number": 14,
         "name": "Alexander",
         "family": "Hernandez",
         "citizenship_number": "7890123456",
         "actions": {
           "mapsLocation" : "123123123 , 12312312",
-          "graphsData" : "data"
+          "graphsData" : [12, 6,13, 1, 4, 3]
+        }
+      },
+      {
+        "id_number": 15,
+        "name": "Alexand",
+        "family": "Hernand",
+        "citizenship_number": "7897123656",
+        "actions": {
+          "mapsLocation" : "123123123 , 12312312",
+          "graphsData" : [12, 6,13, 1, 14, 3]
         }
       }
     ]

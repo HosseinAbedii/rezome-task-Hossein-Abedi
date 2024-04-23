@@ -24,7 +24,7 @@ $(document).ready(function () {
           if (title == "") {
           } else {
             $(cell).html(
-              '<input type="text" class="bg-light form-control" placeholder="' +
+              '<input type="text" class="color-primry form-control mx-auto" placeholder="' +
                 title +
                 '" />'
             );
@@ -79,7 +79,7 @@ $(document).ready(function () {
           <i class="text-success bi bi-pen mx-1" onclick="openPopup( 'edit' , '${data.id_number}')"></i>
           <i class="text-success bi bi-trash mx-1" onclick="openPopup( 'delete' , '${data.id_number}')"></i>
           <i class="text-success bi bi-globe-americas mx-1" onclick="openPopup( 'maps' , '${data.id_number}')"></i>
-          <i class="text-success bi bi-bar-chart-fill mx-1" onclick="openPopup( 'graphs' , '${data.id_number}')"></i>
+          <i class="text-success bi bi-bar-chart-fill mx-1"id="openModalButton"onclick="OpenChartPopup('${data.id_number}')"></i>
           `;
           return buttons;
         },
@@ -143,11 +143,11 @@ function addPersonModal() {
   );
   var modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose =`
+  var buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     Close
     </button>`;
-  var buttonSave =`
+  var buttonSave = `
     <button type="button" class="btn btn-primary" onclick="addPerson(${id})">
     Save 
     </button>`;
@@ -202,17 +202,17 @@ function editModal(id) {
   );
   var modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose =`
+  var buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     Close
     </button>`;
-  var buttonSave =`
+  var buttonSave = `
     <button type="button" class="btn btn-primary" onclick="addPerson(${id})">
     Save
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose + buttonSave);
 }
-function deleteModa(id){
+function deleteModa(id) {
   var modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
   var nameView = `
@@ -232,58 +232,93 @@ function deleteModa(id){
   );
   var modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose =`
+  var buttonClose = `
     <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
     Close
     </button>`;
-  var buttonSave =`
+  var buttonSave = `
     <button type="button" class="btn btn-danger" onclick="detelePerson(${id})">
     Delete 
     </button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose + buttonSave);
 }
-function mapModal(id){
+function mapModal(id) {
   var modalBody = document.getElementById("modalbody");
   modalBody.innerHTML = ""; // Clear the content of modal-body
   var mapView = `
   <div id="map" style="height: 400px;"></div>`;
-  modalBody.insertAdjacentHTML(
-    "afterbegin",
-     mapView
-  );
-  document.addEventListener('DOMContentLoaded', function() {
+  modalBody.insertAdjacentHTML("afterbegin", mapView);
+  document.addEventListener("DOMContentLoaded", function () {
     // Initialize the map
-    var map = L.map('map').setView([51.505, -0.09], 13);
+    var map = L.map("map").setView([51.505, -0.09], 13);
 
     // Add a tile layer to the map
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
-      maxZoom: 18
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+      maxZoom: 18,
     }).addTo(map);
 
     // Add a marker to the map
-    L.marker([51.5, -0.09]).addTo(map)
-      .bindPopup('A sample marker.');
+    L.marker([51.5, -0.09]).addTo(map).bindPopup("A sample marker.");
 
     // Optionally, you can customize the map view or add more markers, polygons, etc.
   });
   var modalfooter = document.getElementById("modalfooter");
   modalfooter.innerHTML = "";
-  var buttonClose =
-    '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">' +
-    "Close" +
-    "</button>";
+  var buttonClose = `
+    <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">
+    "Close
+    "</button>`;
   modalfooter.insertAdjacentHTML("afterbegin", buttonClose);
-
 }
-function graphModal(id){
-  var modalfooter = document.getElementById("modalfooter");
-  modalfooter.innerHTML = "";
-  var buttonClose =
-    '<button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closePopup()">' +
-    "Close" +
-    "</button>";
-  modalfooter.insertAdjacentHTML("afterbegin", buttonClose);
+function createChartModal(id) {
+  // Create a canvas element to hold the chart
+  var chartCanvas = document.createElement("canvas");
+  chartCanvas.id = "chartCanvas";
+  chartCanvas.width = 400;
+  chartCanvas.height = 300;
+
+  // Create the chart using Chart.js
+  var chartCtx = chartCanvas.getContext("2d");
+  var chart = new Chart(chartCtx, {
+    type: "bar",
+    data: {
+      labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+      datasets: [
+        {
+          label: "# of Votes",
+          data: globalData[id].actions.graphsData,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 1,
+        },
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
+
+  return chartCanvas;
 }
 function addPerson(id) {
   var name = document.getElementById("nameInput").value;
@@ -295,9 +330,18 @@ function addPerson(id) {
 
   $("#PopupModal").modal("hide");
 }
-function detelePerson(id){
+function detelePerson(id) {
   $("#PopupModal").modal("hide");
 }
 function closePopup() {
   $("#PopupModal").modal("hide");
+}
+function closechartPopup() {
+  $("#chartModal").modal("hide");
+}
+function OpenChartPopup(id) {
+  $("#chartModal").modal("show");
+  var chartModalBody = document.querySelector("#chartModal .modal-body");
+  chartModalBody.innerHTML = "";
+  chartModalBody.appendChild(createChartModal(id));
 }

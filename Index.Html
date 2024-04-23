@@ -50,14 +50,14 @@
       </div>
       <!-- Popup/modal -->
       <div
-        class="modal fade "
+        class="modal fade"
         id="PopupModal"
         tabindex="-1"
         role="dialog"
         aria-labelledby="PopupModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog " role="document">
+        <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 id="modal-title" class="modal-title" id="PopupModal"></h5>
@@ -80,8 +80,40 @@
           </div>
         </div>
       </div>
-    </div>
 
+      <!-- Bootstrap chart Modal -->
+      <div
+        class="modal fade"
+        id="chartModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="chartModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="chartModalLabel">Chart</h5>
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+                onclick="closechartPopup()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <canvas id="chartCanvas" width="400" height="300"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/leaflet@1.7.1/dist/leaflet.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
